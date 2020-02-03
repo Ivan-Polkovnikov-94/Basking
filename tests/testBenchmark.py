@@ -51,49 +51,49 @@ class TestReadBenchmarkLink:
 
     def test_uuid_read_benchmark_link(self, get_uuid):
         response = read_benchmark_link(get_uuid)
-        a = json.loads(response.text)['data']['readBenchmarkLink']['uuid']
+        a = json.loads(response.text)['data']['link']['uuid']
         assert a == get_uuid
 
     def test_location_id_read_benchmark_link(self, get_uuid):
         response = read_benchmark_link(get_uuid)
-        a = json.loads(response.text)['data']['readBenchmarkLink']['benchmarkLocationId']
+        a = json.loads(response.text)['data']['link']['benchmarkLocationId']
         assert a == benchmarkLocationId
 
     def test_data_read_benchmark_link(self, get_uuid):
         response = read_benchmark_link(get_uuid)
-        a = json.loads(response.text)['data']['readBenchmarkLink']['data']
+        a = json.loads(response.text)['data']['link']['data']
         assert a == data
 
     def test_user_id_read_benchmark_link(self, get_uuid):
         response = read_benchmark_link(get_uuid)
-        a = json.loads(response.text)['data']['readBenchmarkLink']['createUserId']
+        a = json.loads(response.text)['data']['link']['createUserId']
         assert a == token.user_id
 
 
 class TestUpdateBenchmarkLink:
 
     def test_update_benchmark_link_status(self, get_uuid):
-        update_benchmark_link(get_uuid)
-        assert update_benchmark_link == 200
+        response = update_benchmark_link(get_uuid)
+        assert response.status_code == 200
 
     def test_uuid_update_benchmark_link(self, get_uuid):
         response = update_benchmark_link(get_uuid)
-        a = json.loads(response.text)['data']['updateBenchmarkLink']['uuid']
-        assert a == self
+        a = json.loads(response.text)['data']['link']['uuid']
+        assert a == get_uuid
 
     def test_location_id_update_benchmark_link(self, get_uuid):
         response = update_benchmark_link(get_uuid)
-        a = json.loads(response.text)['data']['updateBenchmarkLink']['benchmarkLocationId']
+        a = json.loads(response.text)['data']['link']['benchmarkLocationId']
         assert a == benchmarkLocationId
 
     def test_data_update_benchmark_link(self, get_uuid):
         response = update_benchmark_link(get_uuid)
-        a = json.loads(response.text)['data']['updateBenchmarkLink']['data']
+        a = json.loads(response.text)['data']['link']['data']
         assert a == data_update
 
     def test_user_id_update_benchmark_link(self, get_uuid):
         response = update_benchmark_link(get_uuid)
-        a = json.loads(response.text)['data']['updateBenchmarkLink']['createUserId']
+        a = json.loads(response.text)['data']['link']['createUserId']
         assert a == token.user_id
 
 
@@ -101,7 +101,6 @@ class TestDeleteBenchmark:
 
     def test_delete_benchmark_link_status(self, get_uuid):
         response = delete_benchmark_link(get_uuid)
-        print(response.status_code)
         assert response.status_code == 200
 
     def test_delete_benchmark_link(self, get_uuid):

@@ -23,6 +23,5 @@ def get_token():
     )
     return response['AuthenticationResult']['IdToken']
 
-
 # a = get_token()
 # print(a)

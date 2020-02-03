@@ -1,5 +1,6 @@
 import json
-import token
+from helpers import token
+import requests
 
 origin = 'https://dev-api.basking.io'
 staging = 'https://qi2vju2jn9.execute-api.eu-central-1.amazonaws.com/staging'
@@ -22,7 +23,7 @@ def add_benchmark_link():
             }
         }
     }
-    r = benchmarkRequests.post(origin, headers={'Authorization': jwt}, json=payload)
+    r = requests.post(origin, headers={'Authorization': jwt}, json=payload)
     u = json.loads(r.text)['data']['addBenchmarkLink']['uuid']
     return r, u
 
@@ -35,7 +36,7 @@ def read_benchmark_link(uuid):
             "uuid": uuid
         }
     }
-    r = benchmarkRequests.post(origin, headers={'Authorization': jwt}, json=payload)
+    r = requests.post(origin, headers={'Authorization': jwt}, json=payload)
     return r
 
 
@@ -51,7 +52,7 @@ def update_benchmark_link(uuid):
             }
         }
     }
-    r = benchmarkRequests.post(origin, headers={'Authorization': jwt}, json=payload)
+    r = requests.post(origin, headers={'Authorization': jwt}, json=payload)
     return r
 
 
@@ -62,7 +63,7 @@ def delete_benchmark_link(uuid):
             "uuid": uuid
         }
     }
-    r = benchmarkRequests.post(origin, headers={'Authorization': jwt}, json=payload)
+    r = requests.post(origin, headers={'Authorization': jwt}, json=payload)
     return r
 
 
@@ -75,6 +76,6 @@ def read_benchmark_locations(uuid):
             "organizationId": 3
         }
     }
-    r = benchmarkRequests.post(origin, headers={'Authorization': jwt}, json=payload)
+    r = requests.post(origin, headers={'Authorization': jwt}, json=payload)
     return r
 

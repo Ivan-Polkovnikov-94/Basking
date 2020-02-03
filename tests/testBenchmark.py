@@ -1,9 +1,9 @@
-from requests import benchmarkRequests
+from baskingRequests import benchmarkRequests
 import json
-import token
+from helpers import token
 import pytest
-from requests.benchmarkRequests import update_benchmark_link, read_benchmark_link, add_benchmark_link, \
-    benchmarkLocationId, delete_benchmark_link
+from baskingRequests.benchmarkRequests import update_benchmark_link, read_benchmark_link, add_benchmark_link, \
+    benchmarkLocationId, delete_benchmark_link, data, data_update
 
 
 @pytest.fixture()
@@ -20,7 +20,7 @@ def destroy_uuid(building):
 class TestAddBenchmarkLink:
 
     def test_status_code_add_benchmark_link(self):
-        response, building = requests.benchmarkRequests.add_benchmark_link()
+        response, building = add_benchmark_link()
         assert response.status_code == 200
 
     def test_uuid_add_benchmark_link(self):
@@ -52,7 +52,7 @@ class TestReadBenchmarkLink:
     def test_uuid_read_benchmark_link(self, get_uuid):
         response = read_benchmark_link(get_uuid)
         a = json.loads(response.text)['data']['readBenchmarkLink']['uuid']
-        assert a == self
+        assert a == get_uuid
 
     def test_location_id_read_benchmark_link(self, get_uuid):
         response = read_benchmark_link(get_uuid)
